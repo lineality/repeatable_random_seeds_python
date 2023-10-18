@@ -1,6 +1,15 @@
 # repeatable_random_seeds_python
 
 ```
+# Helper Function
+def get_seed_sha256_hash(file_path):
+    sha256_hash = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        # Read file in chunks of 4K
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+    return sha256_hash.hexdigest()
+
 
 # Helper Function
 def string_get_seed_from_sha256_hash(input_string, log_name):
